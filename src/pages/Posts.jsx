@@ -1,7 +1,7 @@
-import { Link, useLoaderData } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
 function Posts() {
-  const posts = useLoaderData();
+  const posts = useFetch("https://jsonplaceholder.typicode.com/posts");
 
   return (
     <div className="posts-page">
@@ -12,7 +12,6 @@ function Posts() {
           <div className="post-card" key={post.id}>
             <h3>{post.title}</h3>
             <p>{post.body}</p>
-            <Link to={`/posts/${post.id}`}>Vai al dettaglio</Link>
           </div>
         );
       })}

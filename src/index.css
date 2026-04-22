@@ -22,8 +22,11 @@ body {
   gap: 20px;
   box-sizing: border-box;
   z-index: 1000;
+  transition: background-color 0.3s ease;
 }
-
+.navbar-scrolled {
+  background-color: #2f4f5c;
+}
 .navbar a {
   color: white;
   text-decoration: none;
