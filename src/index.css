@@ -12,8 +12,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 }
 
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -27,9 +29,11 @@ body {
   z-index: 1000;
   transition: background-color 0.3s ease;
 }
+
 .navbar-scrolled {
   background-color: #2f4f5c;
 }
+
 .navbar a {
   color: white;
   text-decoration: none;
@@ -37,11 +41,14 @@ body {
   font-weight: bold;
 }
 
+/* HEADER */
 .header {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
 }
 
 .header-title {
@@ -51,11 +58,13 @@ body {
   margin: 0;
 }
 
+/* PAGINE */
 .posts-page,
 .detail-page,
 .auth-page {
   width: 80%;
   margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 .posts-page h1,
@@ -66,6 +75,7 @@ body {
   margin-bottom: 20px;
 }
 
+/* CARD POST */
 .post-card {
   margin-top: 20px;
   padding: 20px;
@@ -84,6 +94,7 @@ body {
   text-decoration: none;
 }
 
+/* FORM */
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -104,6 +115,7 @@ body {
   border: none;
   border-radius: 8px;
   margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 .auth-form button {
@@ -115,4 +127,12 @@ body {
   background-color: #482c3d;
   color: white;
   font-size: 16px;
+}
+
+/* ERRORI VALIDAZIONE */
+.auth-form p {
+  color: #ffd6d6;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  font-size: 14px;
 }

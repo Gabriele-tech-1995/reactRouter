@@ -1,52 +1,60 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { UserContext } from "../context/UserContext";
 
 function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const { setUser } = useContext(UserContext);
+  const context = useContext(UserContext);
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    setUser({
-      name,
-      email,
+  function onSubmit(data) {
+    context.setUser({
+      name: data.name,
+      email: data.email,
     });
-
-    setName("");
-    setEmail("");
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="card w-96 bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h1 className="card-title text-2xl">Register</h1>
+    <div className="auth-page">
+      <h1>Register</h1>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <input
-              type="text"
-              placeholder="Inserisci nome"
-              className="input input-bordered w-full"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+      <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="name">Nome</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Inserisci nome"
+          {...register("name", {
+            required: "Il nome è obbligatorio",
+            maxLength: {
+              value: 50,
+              message: "Il nome può contenere al massimo 50 caratteri",
+            },
+          })}
+        />
+        {errors.name && <p>{errors.name.message}</p>}
 
-            <input
-              type="email"
-              placeholder="Inserisci email"
-              className="input input-bordered w-full"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Inserisci email"
+          {...register("email", {
+            required: "L'email è obbligatoria",
+            maxLength: {
+              value: 50,
+              message: "L'email può contenere al massimo 50 caratteri",
+            },
+          })}
+        />
+        {errors.email && <p>{errors.email.message}</p>}
 
-            <button type="submit" className="btn btn-primary">
-              Registrati
-            </button>
-          </form>
-        </div>
-      </div>
+        <button type="submit">Registrati</button>
+      </form>
     </div>
   );
 }
