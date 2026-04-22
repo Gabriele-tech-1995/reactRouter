@@ -1,20 +1,29 @@
-import useFetch from "../hooks/useFetch";
+import { Link, useLoaderData } from "react-router-dom";
 
 function Posts() {
-  const posts = useFetch("https://jsonplaceholder.typicode.com/posts");
+  const posts = useLoaderData();
 
   return (
-    <div className="posts-page">
-      <h1>Tutti i post</h1>
+    <div className="mx-auto w-11/12 max-w-4xl py-10">
+      <h1 className="mb-6 text-center text-4xl font-bold">Tutti i post</h1>
 
-      {posts.map((post) => {
-        return (
-          <div className="post-card" key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
-          </div>
-        );
-      })}
+      <div className="grid gap-6">
+        {posts.map((post) => {
+          return (
+            <div key={post.id} className="card bg-base-100 shadow-md">
+              <div className="card-body">
+                <h2 className="card-title">{post.title}</h2>
+                <p>{post.body}</p>
+                <div className="card-actions justify-end">
+                  <Link to={`/posts/${post.id}`} className="btn btn-primary">
+                    Vai al dettaglio
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

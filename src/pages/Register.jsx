@@ -10,8 +10,8 @@ function Register() {
     e.preventDefault();
 
     setUser({
-      name: name,
-      email: email,
+      name,
+      email,
     });
 
     setName("");
@@ -19,30 +19,34 @@ function Register() {
   }
 
   return (
-    <div className="auth-page">
-      <h1>Register</h1>
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h1 className="card-title text-2xl">Register</h1>
 
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <label htmlFor="register-name">Nome</label>
-        <input
-          type="text"
-          id="register-name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Inserisci nome"
-        />
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <input
+              type="text"
+              placeholder="Inserisci nome"
+              className="input input-bordered w-full"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
 
-        <label htmlFor="register-email">Email</label>
-        <input
-          type="email"
-          id="register-email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Inserisci email"
-        />
+            <input
+              type="email"
+              placeholder="Inserisci email"
+              className="input input-bordered w-full"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-        <button type="submit">Registrati</button>
-      </form>
+            <button type="submit" className="btn btn-primary">
+              Registrati
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
