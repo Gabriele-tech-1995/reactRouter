@@ -1,20 +1,44 @@
+import { useState, useContext } from "react";
+import { UserContext } from "../context/UserContext";
+
 function Register() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const { setUser } = useContext(UserContext);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    setUser({
+      name: name,
+      email: email,
+    });
+
+    setName("");
+    setEmail("");
+  }
+
   return (
     <div className="auth-page">
       <h1>Register</h1>
 
-      <form className="auth-form">
+      <form className="auth-form" onSubmit={handleSubmit}>
         <label htmlFor="register-name">Nome</label>
-        <input type="text" id="register-name" placeholder="Inserisci nome" />
+        <input
+          type="text"
+          id="register-name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Inserisci nome"
+        />
 
         <label htmlFor="register-email">Email</label>
-        <input type="email" id="register-email" placeholder="Inserisci email" />
-
-        <label htmlFor="register-password">Password</label>
         <input
-          type="password"
-          id="register-password"
-          placeholder="Inserisci password"
+          type="email"
+          id="register-email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Inserisci email"
         />
 
         <button type="submit">Registrati</button>
