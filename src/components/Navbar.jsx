@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import useScroll from "../hooks/useScroll";
 
 function Navbar() {
   const context = useContext(UserContext);
+  const navbarRef = useScroll();
 
   if (!context) {
     return null;
   }
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div
+      ref={navbarRef}
+      className="navbar fixed top-0 left-0 w-full z-50 bg-base-100 shadow-sm px-6 navbar-scrolled"
+    >
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost text-xl">
           Home

@@ -4,7 +4,7 @@ function Posts() {
   const posts = useLoaderData();
 
   return (
-    <div className="mx-auto w-11/12 max-w-4xl py-10">
+    <main className="mx-auto w-11/12 max-w-4xl py-10">
       <h1 className="mb-6 text-center text-4xl font-bold">Tutti i post</h1>
 
       <div className="grid gap-6">
@@ -24,7 +24,7 @@ function Posts() {
           );
         })}
       </div>
-    </div>
+    </main>
   );
 }
 

@@ -19,15 +19,21 @@ function Register() {
   }
 
   return (
-    <div className="auth-page">
-      <h1>Register</h1>
+    <main className="min-h-screen flex justify-center items-center px-4">
+      <form
+        className="w-full max-w-md p-8 rounded-xl bg-base-100 shadow-xl"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h1 className="text-3xl font-bold text-center mb-6">Register</h1>
 
-      <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">Nome</label>
+        <label htmlFor="name" className="block mb-2 font-medium">
+          Nome
+        </label>
         <input
           type="text"
           id="name"
           placeholder="Inserisci nome"
+          className="input input-bordered w-full mb-2"
           {...register("name", {
             required: "Il nome è obbligatorio",
             maxLength: {
@@ -36,13 +42,18 @@ function Register() {
             },
           })}
         />
-        {errors.name && <p>{errors.name.message}</p>}
+        {errors.name && (
+          <p className="text-red-500 mb-4">{errors.name.message}</p>
+        )}
 
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email" className="block mb-2 font-medium">
+          Email
+        </label>
         <input
           type="email"
           id="email"
           placeholder="Inserisci email"
+          className="input input-bordered w-full mb-2"
           {...register("email", {
             required: "L'email è obbligatoria",
             maxLength: {
@@ -51,11 +62,15 @@ function Register() {
             },
           })}
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && (
+          <p className="text-red-500 mb-4">{errors.email.message}</p>
+        )}
 
-        <button type="submit">Registrati</button>
+        <button type="submit" className="btn btn-secondary w-full mt-2">
+          Registrati
+        </button>
       </form>
-    </div>
+    </main>
   );
 }
 

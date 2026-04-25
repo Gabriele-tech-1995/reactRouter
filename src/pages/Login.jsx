@@ -12,15 +12,21 @@ function Login() {
   }
 
   return (
-    <div className="auth-page">
-      <h1>Login</h1>
+    <main className="min-h-screen flex justify-center items-center px-4">
+      <form
+        className="w-full max-w-md p-8 rounded-xl bg-base-100 shadow-xl"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
 
-      <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email" className="block mb-2 font-medium">
+          Email
+        </label>
         <input
           type="email"
           id="email"
           placeholder="Inserisci email"
+          className="input input-bordered w-full mb-2"
           {...register("email", {
             required: "L'email è obbligatoria",
             maxLength: {
@@ -29,13 +35,18 @@ function Login() {
             },
           })}
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && (
+          <p className="text-red-500 mb-4">{errors.email.message}</p>
+        )}
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className="block mb-2 font-medium">
+          Password
+        </label>
         <input
           type="password"
           id="password"
           placeholder="Inserisci password"
+          className="input input-bordered w-full mb-2"
           {...register("password", {
             required: "La password è obbligatoria",
             maxLength: {
@@ -44,11 +55,15 @@ function Login() {
             },
           })}
         />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && (
+          <p className="text-red-500 mb-4">{errors.password.message}</p>
+        )}
 
-        <button type="submit">Accedi</button>
+        <button type="submit" className="btn btn-primary w-full mt-2">
+          Accedi
+        </button>
       </form>
-    </div>
+    </main>
   );
 }
 

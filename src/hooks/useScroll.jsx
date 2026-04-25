@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 function useScroll() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const elementRef = useRef(null);
 
   useEffect(() => {
     function handleScroll() {
+      if (!elementRef.current) return;
+
       if (window.scrollY > 50) {
-        setIsScrolled(true);
+        elementRef.current.classList.add("navbar-scrolled");
       } else {
-        setIsScrolled(false);
+        elementRef.current.classList.remove("navbar-scrolled");
       }
     }
 
@@ -19,7 +21,7 @@ function useScroll() {
     };
   }, []);
 
-  return isScrolled;
+  return elementRef;
 }
 
 export default useScroll;
